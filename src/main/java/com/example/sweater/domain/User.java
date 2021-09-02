@@ -3,9 +3,10 @@ package com.example.sweater.domain;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "usr")
@@ -54,14 +55,16 @@ public class User implements UserDetails {
         return isActive();
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
 
     public String getPassword() {
         return password;
