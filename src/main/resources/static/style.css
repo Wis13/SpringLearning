@@ -4,7 +4,11 @@ body {
 }
 
 .blockList {
-    text-align: center;
     background: white;
     margin-top: 50px;
+}
+
+.table {
+    text-align: right;
+    width: auto;
 }
