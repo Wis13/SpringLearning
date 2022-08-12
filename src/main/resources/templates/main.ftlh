@@ -29,15 +29,15 @@
         <button type="submit">Find</button>
     </form>
     <#list messages as message>
-        <div>
+        <div class="blockList">
             <b>${message.id}</b>
             <span>${message.text}</span>
             <i>${message.tag}</i>
             <strong>${message.authorName}</strong>
-            </br>
+            <br>
             <div>
                 <#if message.filename??>
-                    <img src="/img/${message.filename}">
+                    <img src="/img/${message.filename}" alt="">
                 </#if>
             </div>
         </div>

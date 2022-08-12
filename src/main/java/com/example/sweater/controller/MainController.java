@@ -34,7 +34,7 @@ import java.util.UUID;
 
     @GetMapping("/main")
     public String main(@RequestParam(required = false,defaultValue = "")String filter, String name, Model model){
-        Iterable<Message> messages = messageRepo.findAll();
+        Iterable<Message> messages;
         if (filter != null && !filter.isEmpty()) {
             messages = messageRepo.findByTag(filter);
         }else {
@@ -53,9 +53,9 @@ import java.util.UUID;
     ) throws IOException {
         Message message = new Message(text, tag, user);
 
-        if(file != null){
+        if(file != null && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
-            if (uploadDir.exists()){
+            if (!uploadDir.exists()){
                 uploadDir.mkdir();
             }
             String uuidFile = UUID.randomUUID().toString();
@@ -68,6 +68,6 @@ import java.util.UUID;
         messageRepo.save(message);
         Iterable<Message> messages = messageRepo.findAll();
         model.put("messages", messages);
-        return "main";
+        return "redirect:/main";
     }
 }

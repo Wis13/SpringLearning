@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
@@ -23,12 +22,14 @@ public class RegistrationController {
         return "registration";
     }
     @PostMapping("/registration")
-    public String addUser(@RequestParam(required = false, defaultValue = "") User user, Map<String, Object> model){
-        User userFromDB = userRepo.findByUsername(user.getUsername());
-        if (userFromDB != null){
-            model.put("message", " User exists!");
+    public String addUser(User user, Map<String, Object> model) {
+        User userFromDb = userRepo.findByUsername(user.getUsername());
+
+        if (userFromDb != null) {
+            model.put("message", "User exists!");
             return "registration";
         }
+
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepo.save(user);

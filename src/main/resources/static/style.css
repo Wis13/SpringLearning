@@ -1,0 +1,10 @@
+body {
+    color: #ff4300;
+    background: aqua;
+}
+
+.blockList {
+    text-align: center;
+    background: white;
+    margin-top: 50px;
+}

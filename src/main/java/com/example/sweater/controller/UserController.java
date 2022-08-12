@@ -15,8 +15,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("/user")
+@PreAuthorize("hasAuthority('ADMIN')")
+
 public class UserController {
     @Autowired
     private UserRepo userRepo;
@@ -26,19 +27,22 @@ public class UserController {
         model.addAttribute("users", userRepo.findAll());
         return "userlist";
     }
+
     @GetMapping("{user}")
     public  String userEditForm(@PathVariable User user, Model model){
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
         return "userEdit";
-
     }
+
     @PostMapping
     public String userSave(
             @RequestParam String username,
             @RequestParam Map<String, String> form,
-            @RequestParam("userId") User user){
+            @RequestParam("userId") User user
+    ){
         user.setUsername(username);
+
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name).collect(Collectors.toSet());
 
