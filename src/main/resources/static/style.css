@@ -12,3 +12,7 @@ body {
     text-align: right;
     width: auto;
 }
+
+.background_pictures {
+    background-image:url("/static/img/ukraine.png");
+    }
