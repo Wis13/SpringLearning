@@ -16,7 +16,13 @@
     <div class="collapse mb-3" style="margin-top: 10px" id="collapseExample">
         <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <input  type="text" class="form-control" name="text" placeholder="Enter message">
+                <input  type="text" class="form-control ${(textError??)?string('is-invalid', '')}"
+                        value="<#if message??>${message.text}</#if>" name="text" placeholder="Enter message">
+                <#if textError??>
+                <div class="invalid-feedback">
+                    ${textError}
+                </div>
+                </#if>
             </div>
             <div class="mb-3">
                 <input class="form-control" type="text" name="tag" placeholder="Tag">
@@ -47,10 +53,12 @@
             <div class="card-footer">
                 <small class="text muted">${message.authorName}</small>
             </div>
-            </div>
             <#else >
-                No message
+            <div class="text-start">
+                <h5>No message</h5>
             </div>
+            </div>
+        </div>
     </#list>
 </div>
 </@c.page>

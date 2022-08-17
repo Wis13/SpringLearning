@@ -7,6 +7,7 @@ List of users
     <tr>
         <th>Name</th>
         <th>Role</th>
+        <th>Email</th>
         <th></th>
     </tr>
     </thead>
@@ -15,6 +16,7 @@ List of users
         <tr>
             <td>${user.username}</td>
             <td><#list user.roles as role>${role}<#sep>, </#list></td>
+            <td>${user.email}</td>
             <td><a href="/user/${user.id}">Edit</a></td>
         </tr>
     </#list>
